@@ -1,0 +1,25 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Grammar\" />
+    <None Remove="Model\" />
+    <None Remove="Antlr4.Runtime.Standard" />
+    <None Remove="_Harness\" />
+    <None Remove="Model\Clause\" />
+    <None Remove="Model\Term\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Grammar\" />
+    <Folder Include="Model\" />
+    <Folder Include="_Harness\" />
+    <Folder Include="Model\Clause\" />
+    <Folder Include="Model\Term\" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="Antlr4.Runtime.Standard" Version="4.12.0" />
+  </ItemGroup>
+</Project>
