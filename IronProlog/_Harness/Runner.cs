@@ -9,7 +9,9 @@ namespace IronProlog._Harness
     {
         public void Run()
         {
-            var text = "foo(bar(baz), 42).";
+            //var text = "foo(bar(baz), X) :- body(X); a(X), b(X).";
+            //var text = "foo(X) :- bar([[], dead(zed), [2, [b, chopper]], [], Z, [2, [b, chopper]]]).";
+            var text = "foo([_,X,_,Y|_]) :- bar([[], dead(zed), [2, [b, chopper]], [], Z]).";
 
             AntlrInputStream inputStream = new AntlrInputStream(text.ToString());
             PrologLexer lexer = new PrologLexer(inputStream);

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace IronProlog.Model
+namespace IronProlog.Model.Term
 {
     public class Variable : Term
     {

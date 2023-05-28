@@ -1,0 +1,14 @@
+T__0=1
+T__1=2
+ATOM=3
+IF=4
+VARIABLE=5
+NUMBER=6
+COMMA=7
+STOP=8
+WHITESPACE=9
+'('=1
+')'=2
+':-'=4
+','=7
+'.'=8

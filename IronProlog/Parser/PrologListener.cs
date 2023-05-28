@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from Grammar/Prolog.g4 by ANTLR 4.12.0
+// Generated from IronProlog/Grammar/Prolog.g4 by ANTLR 4.12.0
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -62,15 +62,49 @@ public interface IPrologListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitFact([NotNull] PrologParser.FactContext context);
 	/// <summary>
-	/// Enter a parse tree produced by <see cref="PrologParser.compound"/>.
+	/// Enter a parse tree produced by <see cref="PrologParser.rule"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterCompound([NotNull] PrologParser.CompoundContext context);
+	void EnterRule([NotNull] PrologParser.RuleContext context);
 	/// <summary>
-	/// Exit a parse tree produced by <see cref="PrologParser.compound"/>.
+	/// Exit a parse tree produced by <see cref="PrologParser.rule"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitCompound([NotNull] PrologParser.CompoundContext context);
+	void ExitRule([NotNull] PrologParser.RuleContext context);
+	/// <summary>
+	/// Enter a parse tree produced by <see cref="PrologParser.complex"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterComplex([NotNull] PrologParser.ComplexContext context);
+	/// <summary>
+	/// Exit a parse tree produced by <see cref="PrologParser.complex"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitComplex([NotNull] PrologParser.ComplexContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>unaryBody</c>
+	/// labeled alternative in <see cref="PrologParser.body"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterUnaryBody([NotNull] PrologParser.UnaryBodyContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>unaryBody</c>
+	/// labeled alternative in <see cref="PrologParser.body"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitUnaryBody([NotNull] PrologParser.UnaryBodyContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>connectiveBody</c>
+	/// labeled alternative in <see cref="PrologParser.body"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterConnectiveBody([NotNull] PrologParser.ConnectiveBodyContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>connectiveBody</c>
+	/// labeled alternative in <see cref="PrologParser.body"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitConnectiveBody([NotNull] PrologParser.ConnectiveBodyContext context);
 	/// <summary>
 	/// Enter a parse tree produced by <see cref="PrologParser.functor"/>.
 	/// </summary>
@@ -82,52 +116,202 @@ public interface IPrologListener : IParseTreeListener {
 	/// <param name="context">The parse tree.</param>
 	void ExitFunctor([NotNull] PrologParser.FunctorContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>compound_term</c>
-	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// Enter a parse tree produced by <see cref="PrologParser.list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterCompound_term([NotNull] PrologParser.Compound_termContext context);
+	void EnterList([NotNull] PrologParser.ListContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>compound_term</c>
-	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// Exit a parse tree produced by <see cref="PrologParser.list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitCompound_term([NotNull] PrologParser.Compound_termContext context);
+	void ExitList([NotNull] PrologParser.ListContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>atom_term</c>
-	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// Enter a parse tree produced by <see cref="PrologParser.deconstruct"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterAtom_term([NotNull] PrologParser.Atom_termContext context);
+	void EnterDeconstruct([NotNull] PrologParser.DeconstructContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>atom_term</c>
-	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// Exit a parse tree produced by <see cref="PrologParser.deconstruct"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitAtom_term([NotNull] PrologParser.Atom_termContext context);
+	void ExitDeconstruct([NotNull] PrologParser.DeconstructContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>variable_term</c>
-	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// Enter a parse tree produced by <see cref="PrologParser.head"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterVariable_term([NotNull] PrologParser.Variable_termContext context);
+	void EnterHead([NotNull] PrologParser.HeadContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>variable_term</c>
-	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// Exit a parse tree produced by <see cref="PrologParser.head"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitVariable_term([NotNull] PrologParser.Variable_termContext context);
+	void ExitHead([NotNull] PrologParser.HeadContext context);
 	/// <summary>
-	/// Enter a parse tree produced by the <c>number_term</c>
-	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// Enter a parse tree produced by the <c>termItem</c>
+	/// labeled alternative in <see cref="PrologParser.item"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void EnterNumber_term([NotNull] PrologParser.Number_termContext context);
+	void EnterTermItem([NotNull] PrologParser.TermItemContext context);
 	/// <summary>
-	/// Exit a parse tree produced by the <c>number_term</c>
+	/// Exit a parse tree produced by the <c>termItem</c>
+	/// labeled alternative in <see cref="PrologParser.item"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitTermItem([NotNull] PrologParser.TermItemContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>variableItem</c>
+	/// labeled alternative in <see cref="PrologParser.item"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterVariableItem([NotNull] PrologParser.VariableItemContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>variableItem</c>
+	/// labeled alternative in <see cref="PrologParser.item"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitVariableItem([NotNull] PrologParser.VariableItemContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ignoreItem</c>
+	/// labeled alternative in <see cref="PrologParser.item"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIgnoreItem([NotNull] PrologParser.IgnoreItemContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ignoreItem</c>
+	/// labeled alternative in <see cref="PrologParser.item"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIgnoreItem([NotNull] PrologParser.IgnoreItemContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>variableTail</c>
+	/// labeled alternative in <see cref="PrologParser.tail"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterVariableTail([NotNull] PrologParser.VariableTailContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>variableTail</c>
+	/// labeled alternative in <see cref="PrologParser.tail"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitVariableTail([NotNull] PrologParser.VariableTailContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>emptyTail</c>
+	/// labeled alternative in <see cref="PrologParser.tail"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterEmptyTail([NotNull] PrologParser.EmptyTailContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>emptyTail</c>
+	/// labeled alternative in <see cref="PrologParser.tail"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitEmptyTail([NotNull] PrologParser.EmptyTailContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>ignoreTail</c>
+	/// labeled alternative in <see cref="PrologParser.tail"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterIgnoreTail([NotNull] PrologParser.IgnoreTailContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>ignoreTail</c>
+	/// labeled alternative in <see cref="PrologParser.tail"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitIgnoreTail([NotNull] PrologParser.IgnoreTailContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>complexTerm</c>
 	/// labeled alternative in <see cref="PrologParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
-	void ExitNumber_term([NotNull] PrologParser.Number_termContext context);
+	void EnterComplexTerm([NotNull] PrologParser.ComplexTermContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>complexTerm</c>
+	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitComplexTerm([NotNull] PrologParser.ComplexTermContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>listTerm</c>
+	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterListTerm([NotNull] PrologParser.ListTermContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>listTerm</c>
+	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitListTerm([NotNull] PrologParser.ListTermContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>deconstructTerm</c>
+	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterDeconstructTerm([NotNull] PrologParser.DeconstructTermContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>deconstructTerm</c>
+	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitDeconstructTerm([NotNull] PrologParser.DeconstructTermContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>atomTerm</c>
+	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAtomTerm([NotNull] PrologParser.AtomTermContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>atomTerm</c>
+	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAtomTerm([NotNull] PrologParser.AtomTermContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>variableTerm</c>
+	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterVariableTerm([NotNull] PrologParser.VariableTermContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>variableTerm</c>
+	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitVariableTerm([NotNull] PrologParser.VariableTermContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>numberTerm</c>
+	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterNumberTerm([NotNull] PrologParser.NumberTermContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>numberTerm</c>
+	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitNumberTerm([NotNull] PrologParser.NumberTermContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>and</c>
+	/// labeled alternative in <see cref="PrologParser.connective"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterAnd([NotNull] PrologParser.AndContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>and</c>
+	/// labeled alternative in <see cref="PrologParser.connective"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitAnd([NotNull] PrologParser.AndContext context);
+	/// <summary>
+	/// Enter a parse tree produced by the <c>or</c>
+	/// labeled alternative in <see cref="PrologParser.connective"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void EnterOr([NotNull] PrologParser.OrContext context);
+	/// <summary>
+	/// Exit a parse tree produced by the <c>or</c>
+	/// labeled alternative in <see cref="PrologParser.connective"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	void ExitOr([NotNull] PrologParser.OrContext context);
 }
 } // namespace IronProlog.Parser

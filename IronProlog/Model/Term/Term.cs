@@ -1,8 +1,7 @@
 ﻿using System;
-namespace IronProlog.Model
+
+namespace IronProlog.Model.Term
 {
-    public interface Term
-    {
-    }
+    public interface Term { }
 }
 

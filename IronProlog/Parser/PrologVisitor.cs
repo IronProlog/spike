@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from Grammar/Prolog.g4 by ANTLR 4.12.0
+// Generated from IronProlog/Grammar/Prolog.g4 by ANTLR 4.12.0
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -51,11 +51,31 @@ public interface IPrologVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitFact([NotNull] PrologParser.FactContext context);
 	/// <summary>
-	/// Visit a parse tree produced by <see cref="PrologParser.compound"/>.
+	/// Visit a parse tree produced by <see cref="PrologParser.rule"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitCompound([NotNull] PrologParser.CompoundContext context);
+	Result VisitRule([NotNull] PrologParser.RuleContext context);
+	/// <summary>
+	/// Visit a parse tree produced by <see cref="PrologParser.complex"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitComplex([NotNull] PrologParser.ComplexContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>unaryBody</c>
+	/// labeled alternative in <see cref="PrologParser.body"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitUnaryBody([NotNull] PrologParser.UnaryBodyContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>connectiveBody</c>
+	/// labeled alternative in <see cref="PrologParser.body"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitConnectiveBody([NotNull] PrologParser.ConnectiveBodyContext context);
 	/// <summary>
 	/// Visit a parse tree produced by <see cref="PrologParser.functor"/>.
 	/// </summary>
@@ -63,32 +83,120 @@ public interface IPrologVisitor<Result> : IParseTreeVisitor<Result> {
 	/// <return>The visitor result.</return>
 	Result VisitFunctor([NotNull] PrologParser.FunctorContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>compound_term</c>
-	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// Visit a parse tree produced by <see cref="PrologParser.list"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitCompound_term([NotNull] PrologParser.Compound_termContext context);
+	Result VisitList([NotNull] PrologParser.ListContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>atom_term</c>
-	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// Visit a parse tree produced by <see cref="PrologParser.deconstruct"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitAtom_term([NotNull] PrologParser.Atom_termContext context);
+	Result VisitDeconstruct([NotNull] PrologParser.DeconstructContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>variable_term</c>
-	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// Visit a parse tree produced by <see cref="PrologParser.head"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitVariable_term([NotNull] PrologParser.Variable_termContext context);
+	Result VisitHead([NotNull] PrologParser.HeadContext context);
 	/// <summary>
-	/// Visit a parse tree produced by the <c>number_term</c>
+	/// Visit a parse tree produced by the <c>termItem</c>
+	/// labeled alternative in <see cref="PrologParser.item"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitTermItem([NotNull] PrologParser.TermItemContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>variableItem</c>
+	/// labeled alternative in <see cref="PrologParser.item"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitVariableItem([NotNull] PrologParser.VariableItemContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>ignoreItem</c>
+	/// labeled alternative in <see cref="PrologParser.item"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIgnoreItem([NotNull] PrologParser.IgnoreItemContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>variableTail</c>
+	/// labeled alternative in <see cref="PrologParser.tail"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitVariableTail([NotNull] PrologParser.VariableTailContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>emptyTail</c>
+	/// labeled alternative in <see cref="PrologParser.tail"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitEmptyTail([NotNull] PrologParser.EmptyTailContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>ignoreTail</c>
+	/// labeled alternative in <see cref="PrologParser.tail"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitIgnoreTail([NotNull] PrologParser.IgnoreTailContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>complexTerm</c>
 	/// labeled alternative in <see cref="PrologParser.term"/>.
 	/// </summary>
 	/// <param name="context">The parse tree.</param>
 	/// <return>The visitor result.</return>
-	Result VisitNumber_term([NotNull] PrologParser.Number_termContext context);
+	Result VisitComplexTerm([NotNull] PrologParser.ComplexTermContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>listTerm</c>
+	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitListTerm([NotNull] PrologParser.ListTermContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>deconstructTerm</c>
+	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitDeconstructTerm([NotNull] PrologParser.DeconstructTermContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>atomTerm</c>
+	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAtomTerm([NotNull] PrologParser.AtomTermContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>variableTerm</c>
+	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitVariableTerm([NotNull] PrologParser.VariableTermContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>numberTerm</c>
+	/// labeled alternative in <see cref="PrologParser.term"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitNumberTerm([NotNull] PrologParser.NumberTermContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>and</c>
+	/// labeled alternative in <see cref="PrologParser.connective"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitAnd([NotNull] PrologParser.AndContext context);
+	/// <summary>
+	/// Visit a parse tree produced by the <c>or</c>
+	/// labeled alternative in <see cref="PrologParser.connective"/>.
+	/// </summary>
+	/// <param name="context">The parse tree.</param>
+	/// <return>The visitor result.</return>
+	Result VisitOr([NotNull] PrologParser.OrContext context);
 }
 } // namespace IronProlog.Parser

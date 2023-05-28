@@ -1,15 +1,15 @@
 ﻿using System;
 using System.Linq;
-using System.Collections.Generic;
+using Collections = System.Collections.Generic;
 
-namespace IronProlog.Model
+namespace IronProlog.Model.Term
 {
-    public class    Compound : Term
+    public class Complex : Term
     {
         public string Functor { get; private set; }
-        public List<Term> Arguments { get; private set; }
+        public Collections.List<Term> Arguments { get; private set; }
 
-        public Compound(string functor, List<Term> arguments)
+        public Complex(string functor, Collections.List<Term> arguments)
         {
             Functor = functor;
             Arguments = arguments;
@@ -24,9 +24,9 @@ namespace IronProlog.Model
 
         public override bool Equals(object obj)
         {
-            return obj is Compound compound &&
+            return obj is Complex compound &&
                    Functor == compound.Functor &&
-                   EqualityComparer<List<Term>>.Default.Equals(Arguments, compound.Arguments);
+                   Collections.EqualityComparer<Collections.List<Term>>.Default.Equals(Arguments, compound.Arguments);
         }
 
         public override int GetHashCode()

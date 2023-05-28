@@ -11,6 +11,7 @@
     <None Remove="_Harness\" />
     <None Remove="Model\Clause\" />
     <None Remove="Model\Term\" />
+    <None Remove="Model\Term\Item\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Grammar\" />
@@ -18,6 +19,7 @@
     <Folder Include="_Harness\" />
     <Folder Include="Model\Clause\" />
     <Folder Include="Model\Term\" />
+    <Folder Include="Model\Term\Item\" />
   </ItemGroup>
   <ItemGroup>
     <PackageReference Include="Antlr4.Runtime.Standard" Version="4.12.0" />

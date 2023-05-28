@@ -1,28 +1,27 @@
 ﻿using System;
-using System.Linq;
 using System.Collections.Generic;
 using IronProlog.Model.Term;
 
-namespace IronProlog.Model.Clause
+namespace IronProlog.Model.Conjunction
 {
-    public class Fact : Clause
+    public class Leaf : Conjunction
     {
         public Complex Term { get; private set; }
 
-        public Fact(Complex term)
+        public Leaf(Complex term)
         {
             Term = term;
         }
 
         public override string ToString()
         {
-            return Term.ToString() + ".";
+            return Term.ToString();
         }
 
         public override bool Equals(object obj)
         {
-            return obj is Fact fact &&
-                   EqualityComparer<Complex>.Default.Equals(Term, fact.Term);
+            return obj is Leaf leaf &&
+                   EqualityComparer<Complex>.Default.Equals(Term, leaf.Term);
         }
 
         public override int GetHashCode()

@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-// Generated from Grammar/Prolog.g4 by ANTLR 4.12.0
+// Generated from IronProlog/Grammar/Prolog.g4 by ANTLR 4.12.0
 
 // Unreachable code detected
 #pragma warning disable 0162
@@ -37,19 +37,24 @@ public partial class PrologParser : Parser {
 	protected static DFA[] decisionToDFA;
 	protected static PredictionContextCache sharedContextCache = new PredictionContextCache();
 	public const int
-		T__0=1, T__1=2, ATOM=3, VARIABLE=4, NUMBER=5, COMMA=6, STOP=7, WHITESPACE=8;
+		T__0=1, T__1=2, T__2=3, T__3=4, T__4=5, ATOM=6, IF=7, VARIABLE=8, NUMBER=9, 
+		UNDERSCORE=10, COMMA=11, SEMICOLON=12, STOP=13, WHITESPACE=14;
 	public const int
-		RULE_knowledge_base = 0, RULE_clause = 1, RULE_fact = 2, RULE_compound = 3, 
-		RULE_functor = 4, RULE_term = 5;
+		RULE_knowledge_base = 0, RULE_clause = 1, RULE_fact = 2, RULE_rule = 3, 
+		RULE_complex = 4, RULE_body = 5, RULE_functor = 6, RULE_list = 7, RULE_deconstruct = 8, 
+		RULE_head = 9, RULE_item = 10, RULE_tail = 11, RULE_term = 12, RULE_connective = 13;
 	public static readonly string[] ruleNames = {
-		"knowledge_base", "clause", "fact", "compound", "functor", "term"
+		"knowledge_base", "clause", "fact", "rule", "complex", "body", "functor", 
+		"list", "deconstruct", "head", "item", "tail", "term", "connective"
 	};
 
 	private static readonly string[] _LiteralNames = {
-		null, "'('", "')'", null, null, null, "','", "'.'"
+		null, "'('", "')'", "'['", "']'", "'|'", null, "':-'", null, null, "'_'", 
+		"','", "';'", "'.'"
 	};
 	private static readonly string[] _SymbolicNames = {
-		null, null, null, "ATOM", "VARIABLE", "NUMBER", "COMMA", "STOP", "WHITESPACE"
+		null, null, null, null, null, null, "ATOM", "IF", "VARIABLE", "NUMBER", 
+		"UNDERSCORE", "COMMA", "SEMICOLON", "STOP", "WHITESPACE"
 	};
 	public static readonly IVocabulary DefaultVocabulary = new Vocabulary(_LiteralNames, _SymbolicNames);
 
@@ -122,21 +127,21 @@ public partial class PrologParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 13;
+			State = 29;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			do {
 				{
 				{
-				State = 12;
+				State = 28;
 				clause();
 				}
 				}
-				State = 15;
+				State = 31;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			} while ( _la==ATOM );
-			State = 17;
+			State = 33;
 			Match(Eof);
 			}
 		}
@@ -154,6 +159,9 @@ public partial class PrologParser : Parser {
 	public partial class ClauseContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public FactContext fact() {
 			return GetRuleContext<FactContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public RuleContext rule() {
+			return GetRuleContext<RuleContext>(0);
 		}
 		public ClauseContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
@@ -183,10 +191,23 @@ public partial class PrologParser : Parser {
 		ClauseContext _localctx = new ClauseContext(Context, State);
 		EnterRule(_localctx, 2, RULE_clause);
 		try {
-			EnterOuterAlt(_localctx, 1);
-			{
-			State = 19;
-			fact();
+			State = 37;
+			ErrorHandler.Sync(this);
+			switch ( Interpreter.AdaptivePredict(TokenStream,1,Context) ) {
+			case 1:
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 35;
+				fact();
+				}
+				break;
+			case 2:
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 36;
+				rule();
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -201,8 +222,8 @@ public partial class PrologParser : Parser {
 	}
 
 	public partial class FactContext : ParserRuleContext {
-		[System.Diagnostics.DebuggerNonUserCode] public CompoundContext compound() {
-			return GetRuleContext<CompoundContext>(0);
+		[System.Diagnostics.DebuggerNonUserCode] public ComplexContext complex() {
+			return GetRuleContext<ComplexContext>(0);
 		}
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STOP() { return GetToken(PrologParser.STOP, 0); }
 		public FactContext(ParserRuleContext parent, int invokingState)
@@ -235,9 +256,9 @@ public partial class PrologParser : Parser {
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 21;
-			compound();
-			State = 22;
+			State = 39;
+			complex();
+			State = 40;
 			Match(STOP);
 			}
 		}
@@ -252,7 +273,67 @@ public partial class PrologParser : Parser {
 		return _localctx;
 	}
 
-	public partial class CompoundContext : ParserRuleContext {
+	public partial class RuleContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ComplexContext complex() {
+			return GetRuleContext<ComplexContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode IF() { return GetToken(PrologParser.IF, 0); }
+		[System.Diagnostics.DebuggerNonUserCode] public BodyContext body() {
+			return GetRuleContext<BodyContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode STOP() { return GetToken(PrologParser.STOP, 0); }
+		public RuleContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_rule; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.EnterRule(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.ExitRule(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitRule(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public RuleContext rule() {
+		RuleContext _localctx = new RuleContext(Context, State);
+		EnterRule(_localctx, 6, RULE_rule);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 42;
+			complex();
+			State = 43;
+			Match(IF);
+			State = 44;
+			body();
+			State = 45;
+			Match(STOP);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class ComplexContext : ParserRuleContext {
 		[System.Diagnostics.DebuggerNonUserCode] public FunctorContext functor() {
 			return GetRuleContext<FunctorContext>(0);
 		}
@@ -266,61 +347,165 @@ public partial class PrologParser : Parser {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMMA(int i) {
 			return GetToken(PrologParser.COMMA, i);
 		}
-		public CompoundContext(ParserRuleContext parent, int invokingState)
+		public ComplexContext(ParserRuleContext parent, int invokingState)
 			: base(parent, invokingState)
 		{
 		}
-		public override int RuleIndex { get { return RULE_compound; } }
+		public override int RuleIndex { get { return RULE_complex; } }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			IPrologListener typedListener = listener as IPrologListener;
-			if (typedListener != null) typedListener.EnterCompound(this);
+			if (typedListener != null) typedListener.EnterComplex(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			IPrologListener typedListener = listener as IPrologListener;
-			if (typedListener != null) typedListener.ExitCompound(this);
+			if (typedListener != null) typedListener.ExitComplex(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCompound(this);
+			if (typedVisitor != null) return typedVisitor.VisitComplex(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
 
 	[RuleVersion(0)]
-	public CompoundContext compound() {
-		CompoundContext _localctx = new CompoundContext(Context, State);
-		EnterRule(_localctx, 6, RULE_compound);
+	public ComplexContext complex() {
+		ComplexContext _localctx = new ComplexContext(Context, State);
+		EnterRule(_localctx, 8, RULE_complex);
 		int _la;
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 24;
+			State = 47;
 			functor();
-			State = 25;
+			State = 48;
 			Match(T__0);
-			State = 26;
+			State = 49;
 			term();
-			State = 31;
+			State = 54;
 			ErrorHandler.Sync(this);
 			_la = TokenStream.LA(1);
 			while (_la==COMMA) {
 				{
 				{
-				State = 27;
+				State = 50;
 				Match(COMMA);
-				State = 28;
+				State = 51;
 				term();
 				}
 				}
-				State = 33;
+				State = 56;
 				ErrorHandler.Sync(this);
 				_la = TokenStream.LA(1);
 			}
-			State = 34;
+			State = 57;
 			Match(T__1);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class BodyContext : ParserRuleContext {
+		public BodyContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_body; } }
+	 
+		public BodyContext() { }
+		public virtual void CopyFrom(BodyContext context) {
+			base.CopyFrom(context);
+		}
+	}
+	public partial class ConnectiveBodyContext : BodyContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ComplexContext complex() {
+			return GetRuleContext<ComplexContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ConnectiveContext connective() {
+			return GetRuleContext<ConnectiveContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public BodyContext body() {
+			return GetRuleContext<BodyContext>(0);
+		}
+		public ConnectiveBodyContext(BodyContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.EnterConnectiveBody(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.ExitConnectiveBody(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitConnectiveBody(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class UnaryBodyContext : BodyContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ComplexContext complex() {
+			return GetRuleContext<ComplexContext>(0);
+		}
+		public UnaryBodyContext(BodyContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.EnterUnaryBody(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.ExitUnaryBody(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitUnaryBody(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public BodyContext body() {
+		BodyContext _localctx = new BodyContext(Context, State);
+		EnterRule(_localctx, 10, RULE_body);
+		try {
+			State = 64;
+			ErrorHandler.Sync(this);
+			switch ( Interpreter.AdaptivePredict(TokenStream,3,Context) ) {
+			case 1:
+				_localctx = new UnaryBodyContext(_localctx);
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 59;
+				complex();
+				}
+				break;
+			case 2:
+				_localctx = new ConnectiveBodyContext(_localctx);
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 60;
+				complex();
+				State = 61;
+				connective();
+				State = 62;
+				body();
+				}
+				break;
 			}
 		}
 		catch (RecognitionException re) {
@@ -362,12 +547,471 @@ public partial class PrologParser : Parser {
 	[RuleVersion(0)]
 	public FunctorContext functor() {
 		FunctorContext _localctx = new FunctorContext(Context, State);
-		EnterRule(_localctx, 8, RULE_functor);
+		EnterRule(_localctx, 12, RULE_functor);
 		try {
 			EnterOuterAlt(_localctx, 1);
 			{
-			State = 36;
+			State = 66;
 			Match(ATOM);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class ListContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public TermContext[] term() {
+			return GetRuleContexts<TermContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public TermContext term(int i) {
+			return GetRuleContext<TermContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] COMMA() { return GetTokens(PrologParser.COMMA); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMMA(int i) {
+			return GetToken(PrologParser.COMMA, i);
+		}
+		public ListContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_list; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.EnterList(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.ExitList(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitList(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public ListContext list() {
+		ListContext _localctx = new ListContext(Context, State);
+		EnterRule(_localctx, 14, RULE_list);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 68;
+			Match(T__2);
+			State = 77;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			if ((((_la) & ~0x3f) == 0 && ((1L << _la) & 840L) != 0)) {
+				{
+				State = 69;
+				term();
+				State = 74;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+				while (_la==COMMA) {
+					{
+					{
+					State = 70;
+					Match(COMMA);
+					State = 71;
+					term();
+					}
+					}
+					State = 76;
+					ErrorHandler.Sync(this);
+					_la = TokenStream.LA(1);
+				}
+				}
+			}
+
+			State = 79;
+			Match(T__3);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class DeconstructContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public HeadContext head() {
+			return GetRuleContext<HeadContext>(0);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public TailContext tail() {
+			return GetRuleContext<TailContext>(0);
+		}
+		public DeconstructContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_deconstruct; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.EnterDeconstruct(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.ExitDeconstruct(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitDeconstruct(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public DeconstructContext deconstruct() {
+		DeconstructContext _localctx = new DeconstructContext(Context, State);
+		EnterRule(_localctx, 16, RULE_deconstruct);
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 81;
+			Match(T__2);
+			State = 82;
+			head();
+			State = 83;
+			Match(T__4);
+			State = 84;
+			tail();
+			State = 85;
+			Match(T__3);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class HeadContext : ParserRuleContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ItemContext[] item() {
+			return GetRuleContexts<ItemContext>();
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ItemContext item(int i) {
+			return GetRuleContext<ItemContext>(i);
+		}
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode[] COMMA() { return GetTokens(PrologParser.COMMA); }
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMMA(int i) {
+			return GetToken(PrologParser.COMMA, i);
+		}
+		public HeadContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_head; } }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.EnterHead(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.ExitHead(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitHead(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public HeadContext head() {
+		HeadContext _localctx = new HeadContext(Context, State);
+		EnterRule(_localctx, 18, RULE_head);
+		int _la;
+		try {
+			EnterOuterAlt(_localctx, 1);
+			{
+			State = 87;
+			item();
+			State = 92;
+			ErrorHandler.Sync(this);
+			_la = TokenStream.LA(1);
+			while (_la==COMMA) {
+				{
+				{
+				State = 88;
+				Match(COMMA);
+				State = 89;
+				item();
+				}
+				}
+				State = 94;
+				ErrorHandler.Sync(this);
+				_la = TokenStream.LA(1);
+			}
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class ItemContext : ParserRuleContext {
+		public ItemContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_item; } }
+	 
+		public ItemContext() { }
+		public virtual void CopyFrom(ItemContext context) {
+			base.CopyFrom(context);
+		}
+	}
+	public partial class IgnoreItemContext : ItemContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UNDERSCORE() { return GetToken(PrologParser.UNDERSCORE, 0); }
+		public IgnoreItemContext(ItemContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.EnterIgnoreItem(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.ExitIgnoreItem(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitIgnoreItem(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class TermItemContext : ItemContext {
+		[System.Diagnostics.DebuggerNonUserCode] public TermContext term() {
+			return GetRuleContext<TermContext>(0);
+		}
+		public TermItemContext(ItemContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.EnterTermItem(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.ExitTermItem(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitTermItem(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class VariableItemContext : ItemContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VARIABLE() { return GetToken(PrologParser.VARIABLE, 0); }
+		public VariableItemContext(ItemContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.EnterVariableItem(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.ExitVariableItem(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitVariableItem(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public ItemContext item() {
+		ItemContext _localctx = new ItemContext(Context, State);
+		EnterRule(_localctx, 20, RULE_item);
+		try {
+			State = 98;
+			ErrorHandler.Sync(this);
+			switch ( Interpreter.AdaptivePredict(TokenStream,7,Context) ) {
+			case 1:
+				_localctx = new TermItemContext(_localctx);
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 95;
+				term();
+				}
+				break;
+			case 2:
+				_localctx = new VariableItemContext(_localctx);
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 96;
+				Match(VARIABLE);
+				}
+				break;
+			case 3:
+				_localctx = new IgnoreItemContext(_localctx);
+				EnterOuterAlt(_localctx, 3);
+				{
+				State = 97;
+				Match(UNDERSCORE);
+				}
+				break;
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
+	public partial class TailContext : ParserRuleContext {
+		public TailContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_tail; } }
+	 
+		public TailContext() { }
+		public virtual void CopyFrom(TailContext context) {
+			base.CopyFrom(context);
+		}
+	}
+	public partial class EmptyTailContext : TailContext {
+		public EmptyTailContext(TailContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.EnterEmptyTail(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.ExitEmptyTail(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitEmptyTail(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class VariableTailContext : TailContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VARIABLE() { return GetToken(PrologParser.VARIABLE, 0); }
+		public VariableTailContext(TailContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.EnterVariableTail(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.ExitVariableTail(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitVariableTail(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class IgnoreTailContext : TailContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode UNDERSCORE() { return GetToken(PrologParser.UNDERSCORE, 0); }
+		public IgnoreTailContext(TailContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.EnterIgnoreTail(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.ExitIgnoreTail(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitIgnoreTail(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public TailContext tail() {
+		TailContext _localctx = new TailContext(Context, State);
+		EnterRule(_localctx, 22, RULE_tail);
+		try {
+			State = 104;
+			ErrorHandler.Sync(this);
+			switch (TokenStream.LA(1)) {
+			case VARIABLE:
+				_localctx = new VariableTailContext(_localctx);
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 100;
+				Match(VARIABLE);
+				}
+				break;
+			case T__2:
+				_localctx = new EmptyTailContext(_localctx);
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 101;
+				Match(T__2);
+				State = 102;
+				Match(T__3);
+				}
+				break;
+			case UNDERSCORE:
+				_localctx = new IgnoreTailContext(_localctx);
+				EnterOuterAlt(_localctx, 3);
+				{
+				State = 103;
+				Match(UNDERSCORE);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
 			}
 		}
 		catch (RecognitionException re) {
@@ -393,85 +1037,129 @@ public partial class PrologParser : Parser {
 			base.CopyFrom(context);
 		}
 	}
-	public partial class Atom_termContext : TermContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATOM() { return GetToken(PrologParser.ATOM, 0); }
-		public Atom_termContext(TermContext context) { CopyFrom(context); }
+	public partial class ComplexTermContext : TermContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ComplexContext complex() {
+			return GetRuleContext<ComplexContext>(0);
+		}
+		public ComplexTermContext(TermContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			IPrologListener typedListener = listener as IPrologListener;
-			if (typedListener != null) typedListener.EnterAtom_term(this);
+			if (typedListener != null) typedListener.EnterComplexTerm(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			IPrologListener typedListener = listener as IPrologListener;
-			if (typedListener != null) typedListener.ExitAtom_term(this);
+			if (typedListener != null) typedListener.ExitComplexTerm(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitAtom_term(this);
+			if (typedVisitor != null) return typedVisitor.VisitComplexTerm(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class Variable_termContext : TermContext {
-		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VARIABLE() { return GetToken(PrologParser.VARIABLE, 0); }
-		public Variable_termContext(TermContext context) { CopyFrom(context); }
+	public partial class DeconstructTermContext : TermContext {
+		[System.Diagnostics.DebuggerNonUserCode] public DeconstructContext deconstruct() {
+			return GetRuleContext<DeconstructContext>(0);
+		}
+		public DeconstructTermContext(TermContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			IPrologListener typedListener = listener as IPrologListener;
-			if (typedListener != null) typedListener.EnterVariable_term(this);
+			if (typedListener != null) typedListener.EnterDeconstructTerm(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			IPrologListener typedListener = listener as IPrologListener;
-			if (typedListener != null) typedListener.ExitVariable_term(this);
+			if (typedListener != null) typedListener.ExitDeconstructTerm(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitVariable_term(this);
+			if (typedVisitor != null) return typedVisitor.VisitDeconstructTerm(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class Number_termContext : TermContext {
+	public partial class NumberTermContext : TermContext {
 		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode NUMBER() { return GetToken(PrologParser.NUMBER, 0); }
-		public Number_termContext(TermContext context) { CopyFrom(context); }
+		public NumberTermContext(TermContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			IPrologListener typedListener = listener as IPrologListener;
-			if (typedListener != null) typedListener.EnterNumber_term(this);
+			if (typedListener != null) typedListener.EnterNumberTerm(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			IPrologListener typedListener = listener as IPrologListener;
-			if (typedListener != null) typedListener.ExitNumber_term(this);
+			if (typedListener != null) typedListener.ExitNumberTerm(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitNumber_term(this);
+			if (typedVisitor != null) return typedVisitor.VisitNumberTerm(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
-	public partial class Compound_termContext : TermContext {
-		[System.Diagnostics.DebuggerNonUserCode] public CompoundContext compound() {
-			return GetRuleContext<CompoundContext>(0);
-		}
-		public Compound_termContext(TermContext context) { CopyFrom(context); }
+	public partial class AtomTermContext : TermContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode ATOM() { return GetToken(PrologParser.ATOM, 0); }
+		public AtomTermContext(TermContext context) { CopyFrom(context); }
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void EnterRule(IParseTreeListener listener) {
 			IPrologListener typedListener = listener as IPrologListener;
-			if (typedListener != null) typedListener.EnterCompound_term(this);
+			if (typedListener != null) typedListener.EnterAtomTerm(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override void ExitRule(IParseTreeListener listener) {
 			IPrologListener typedListener = listener as IPrologListener;
-			if (typedListener != null) typedListener.ExitCompound_term(this);
+			if (typedListener != null) typedListener.ExitAtomTerm(this);
 		}
 		[System.Diagnostics.DebuggerNonUserCode]
 		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
 			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
-			if (typedVisitor != null) return typedVisitor.VisitCompound_term(this);
+			if (typedVisitor != null) return typedVisitor.VisitAtomTerm(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class ListTermContext : TermContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ListContext list() {
+			return GetRuleContext<ListContext>(0);
+		}
+		public ListTermContext(TermContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.EnterListTerm(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.ExitListTerm(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitListTerm(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class VariableTermContext : TermContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode VARIABLE() { return GetToken(PrologParser.VARIABLE, 0); }
+		public VariableTermContext(TermContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.EnterVariableTerm(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.ExitVariableTerm(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitVariableTerm(this);
 			else return visitor.VisitChildren(this);
 		}
 	}
@@ -479,40 +1167,56 @@ public partial class PrologParser : Parser {
 	[RuleVersion(0)]
 	public TermContext term() {
 		TermContext _localctx = new TermContext(Context, State);
-		EnterRule(_localctx, 10, RULE_term);
+		EnterRule(_localctx, 24, RULE_term);
 		try {
-			State = 42;
+			State = 112;
 			ErrorHandler.Sync(this);
-			switch ( Interpreter.AdaptivePredict(TokenStream,2,Context) ) {
+			switch ( Interpreter.AdaptivePredict(TokenStream,9,Context) ) {
 			case 1:
-				_localctx = new Compound_termContext(_localctx);
+				_localctx = new ComplexTermContext(_localctx);
 				EnterOuterAlt(_localctx, 1);
 				{
-				State = 38;
-				compound();
+				State = 106;
+				complex();
 				}
 				break;
 			case 2:
-				_localctx = new Atom_termContext(_localctx);
+				_localctx = new ListTermContext(_localctx);
 				EnterOuterAlt(_localctx, 2);
 				{
-				State = 39;
-				Match(ATOM);
+				State = 107;
+				list();
 				}
 				break;
 			case 3:
-				_localctx = new Variable_termContext(_localctx);
+				_localctx = new DeconstructTermContext(_localctx);
 				EnterOuterAlt(_localctx, 3);
 				{
-				State = 40;
-				Match(VARIABLE);
+				State = 108;
+				deconstruct();
 				}
 				break;
 			case 4:
-				_localctx = new Number_termContext(_localctx);
+				_localctx = new AtomTermContext(_localctx);
 				EnterOuterAlt(_localctx, 4);
 				{
-				State = 41;
+				State = 109;
+				Match(ATOM);
+				}
+				break;
+			case 5:
+				_localctx = new VariableTermContext(_localctx);
+				EnterOuterAlt(_localctx, 5);
+				{
+				State = 110;
+				Match(VARIABLE);
+				}
+				break;
+			case 6:
+				_localctx = new NumberTermContext(_localctx);
+				EnterOuterAlt(_localctx, 6);
+				{
+				State = 111;
 				Match(NUMBER);
 				}
 				break;
@@ -529,19 +1233,134 @@ public partial class PrologParser : Parser {
 		return _localctx;
 	}
 
+	public partial class ConnectiveContext : ParserRuleContext {
+		public ConnectiveContext(ParserRuleContext parent, int invokingState)
+			: base(parent, invokingState)
+		{
+		}
+		public override int RuleIndex { get { return RULE_connective; } }
+	 
+		public ConnectiveContext() { }
+		public virtual void CopyFrom(ConnectiveContext context) {
+			base.CopyFrom(context);
+		}
+	}
+	public partial class OrContext : ConnectiveContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode SEMICOLON() { return GetToken(PrologParser.SEMICOLON, 0); }
+		public OrContext(ConnectiveContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.EnterOr(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.ExitOr(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitOr(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+	public partial class AndContext : ConnectiveContext {
+		[System.Diagnostics.DebuggerNonUserCode] public ITerminalNode COMMA() { return GetToken(PrologParser.COMMA, 0); }
+		public AndContext(ConnectiveContext context) { CopyFrom(context); }
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void EnterRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.EnterAnd(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override void ExitRule(IParseTreeListener listener) {
+			IPrologListener typedListener = listener as IPrologListener;
+			if (typedListener != null) typedListener.ExitAnd(this);
+		}
+		[System.Diagnostics.DebuggerNonUserCode]
+		public override TResult Accept<TResult>(IParseTreeVisitor<TResult> visitor) {
+			IPrologVisitor<TResult> typedVisitor = visitor as IPrologVisitor<TResult>;
+			if (typedVisitor != null) return typedVisitor.VisitAnd(this);
+			else return visitor.VisitChildren(this);
+		}
+	}
+
+	[RuleVersion(0)]
+	public ConnectiveContext connective() {
+		ConnectiveContext _localctx = new ConnectiveContext(Context, State);
+		EnterRule(_localctx, 26, RULE_connective);
+		try {
+			State = 116;
+			ErrorHandler.Sync(this);
+			switch (TokenStream.LA(1)) {
+			case COMMA:
+				_localctx = new AndContext(_localctx);
+				EnterOuterAlt(_localctx, 1);
+				{
+				State = 114;
+				Match(COMMA);
+				}
+				break;
+			case SEMICOLON:
+				_localctx = new OrContext(_localctx);
+				EnterOuterAlt(_localctx, 2);
+				{
+				State = 115;
+				Match(SEMICOLON);
+				}
+				break;
+			default:
+				throw new NoViableAltException(this);
+			}
+		}
+		catch (RecognitionException re) {
+			_localctx.exception = re;
+			ErrorHandler.ReportError(this, re);
+			ErrorHandler.Recover(this, re);
+		}
+		finally {
+			ExitRule();
+		}
+		return _localctx;
+	}
+
 	private static int[] _serializedATN = {
-		4,1,8,45,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,1,0,4,0,14,8,
-		0,11,0,12,0,15,1,0,1,0,1,1,1,1,1,2,1,2,1,2,1,3,1,3,1,3,1,3,1,3,5,3,30,
-		8,3,10,3,12,3,33,9,3,1,3,1,3,1,4,1,4,1,5,1,5,1,5,1,5,3,5,43,8,5,1,5,0,
-		0,6,0,2,4,6,8,10,0,0,43,0,13,1,0,0,0,2,19,1,0,0,0,4,21,1,0,0,0,6,24,1,
-		0,0,0,8,36,1,0,0,0,10,42,1,0,0,0,12,14,3,2,1,0,13,12,1,0,0,0,14,15,1,0,
-		0,0,15,13,1,0,0,0,15,16,1,0,0,0,16,17,1,0,0,0,17,18,5,0,0,1,18,1,1,0,0,
-		0,19,20,3,4,2,0,20,3,1,0,0,0,21,22,3,6,3,0,22,23,5,7,0,0,23,5,1,0,0,0,
-		24,25,3,8,4,0,25,26,5,1,0,0,26,31,3,10,5,0,27,28,5,6,0,0,28,30,3,10,5,
-		0,29,27,1,0,0,0,30,33,1,0,0,0,31,29,1,0,0,0,31,32,1,0,0,0,32,34,1,0,0,
-		0,33,31,1,0,0,0,34,35,5,2,0,0,35,7,1,0,0,0,36,37,5,3,0,0,37,9,1,0,0,0,
-		38,43,3,6,3,0,39,43,5,3,0,0,40,43,5,4,0,0,41,43,5,5,0,0,42,38,1,0,0,0,
-		42,39,1,0,0,0,42,40,1,0,0,0,42,41,1,0,0,0,43,11,1,0,0,0,3,15,31,42
+		4,1,14,119,2,0,7,0,2,1,7,1,2,2,7,2,2,3,7,3,2,4,7,4,2,5,7,5,2,6,7,6,2,7,
+		7,7,2,8,7,8,2,9,7,9,2,10,7,10,2,11,7,11,2,12,7,12,2,13,7,13,1,0,4,0,30,
+		8,0,11,0,12,0,31,1,0,1,0,1,1,1,1,3,1,38,8,1,1,2,1,2,1,2,1,3,1,3,1,3,1,
+		3,1,3,1,4,1,4,1,4,1,4,1,4,5,4,53,8,4,10,4,12,4,56,9,4,1,4,1,4,1,5,1,5,
+		1,5,1,5,1,5,3,5,65,8,5,1,6,1,6,1,7,1,7,1,7,1,7,5,7,73,8,7,10,7,12,7,76,
+		9,7,3,7,78,8,7,1,7,1,7,1,8,1,8,1,8,1,8,1,8,1,8,1,9,1,9,1,9,5,9,91,8,9,
+		10,9,12,9,94,9,9,1,10,1,10,1,10,3,10,99,8,10,1,11,1,11,1,11,1,11,3,11,
+		105,8,11,1,12,1,12,1,12,1,12,1,12,1,12,3,12,113,8,12,1,13,1,13,3,13,117,
+		8,13,1,13,0,0,14,0,2,4,6,8,10,12,14,16,18,20,22,24,26,0,0,121,0,29,1,0,
+		0,0,2,37,1,0,0,0,4,39,1,0,0,0,6,42,1,0,0,0,8,47,1,0,0,0,10,64,1,0,0,0,
+		12,66,1,0,0,0,14,68,1,0,0,0,16,81,1,0,0,0,18,87,1,0,0,0,20,98,1,0,0,0,
+		22,104,1,0,0,0,24,112,1,0,0,0,26,116,1,0,0,0,28,30,3,2,1,0,29,28,1,0,0,
+		0,30,31,1,0,0,0,31,29,1,0,0,0,31,32,1,0,0,0,32,33,1,0,0,0,33,34,5,0,0,
+		1,34,1,1,0,0,0,35,38,3,4,2,0,36,38,3,6,3,0,37,35,1,0,0,0,37,36,1,0,0,0,
+		38,3,1,0,0,0,39,40,3,8,4,0,40,41,5,13,0,0,41,5,1,0,0,0,42,43,3,8,4,0,43,
+		44,5,7,0,0,44,45,3,10,5,0,45,46,5,13,0,0,46,7,1,0,0,0,47,48,3,12,6,0,48,
+		49,5,1,0,0,49,54,3,24,12,0,50,51,5,11,0,0,51,53,3,24,12,0,52,50,1,0,0,
+		0,53,56,1,0,0,0,54,52,1,0,0,0,54,55,1,0,0,0,55,57,1,0,0,0,56,54,1,0,0,
+		0,57,58,5,2,0,0,58,9,1,0,0,0,59,65,3,8,4,0,60,61,3,8,4,0,61,62,3,26,13,
+		0,62,63,3,10,5,0,63,65,1,0,0,0,64,59,1,0,0,0,64,60,1,0,0,0,65,11,1,0,0,
+		0,66,67,5,6,0,0,67,13,1,0,0,0,68,77,5,3,0,0,69,74,3,24,12,0,70,71,5,11,
+		0,0,71,73,3,24,12,0,72,70,1,0,0,0,73,76,1,0,0,0,74,72,1,0,0,0,74,75,1,
+		0,0,0,75,78,1,0,0,0,76,74,1,0,0,0,77,69,1,0,0,0,77,78,1,0,0,0,78,79,1,
+		0,0,0,79,80,5,4,0,0,80,15,1,0,0,0,81,82,5,3,0,0,82,83,3,18,9,0,83,84,5,
+		5,0,0,84,85,3,22,11,0,85,86,5,4,0,0,86,17,1,0,0,0,87,92,3,20,10,0,88,89,
+		5,11,0,0,89,91,3,20,10,0,90,88,1,0,0,0,91,94,1,0,0,0,92,90,1,0,0,0,92,
+		93,1,0,0,0,93,19,1,0,0,0,94,92,1,0,0,0,95,99,3,24,12,0,96,99,5,8,0,0,97,
+		99,5,10,0,0,98,95,1,0,0,0,98,96,1,0,0,0,98,97,1,0,0,0,99,21,1,0,0,0,100,
+		105,5,8,0,0,101,102,5,3,0,0,102,105,5,4,0,0,103,105,5,10,0,0,104,100,1,
+		0,0,0,104,101,1,0,0,0,104,103,1,0,0,0,105,23,1,0,0,0,106,113,3,8,4,0,107,
+		113,3,14,7,0,108,113,3,16,8,0,109,113,5,6,0,0,110,113,5,8,0,0,111,113,
+		5,9,0,0,112,106,1,0,0,0,112,107,1,0,0,0,112,108,1,0,0,0,112,109,1,0,0,
+		0,112,110,1,0,0,0,112,111,1,0,0,0,113,25,1,0,0,0,114,117,5,11,0,0,115,
+		117,5,12,0,0,116,114,1,0,0,0,116,115,1,0,0,0,117,27,1,0,0,0,11,31,37,54,
+		64,74,77,92,98,104,112,116
 	};
 
 	public static readonly ATN _ATN =
